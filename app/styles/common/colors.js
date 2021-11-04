@@ -1,7 +1,7 @@
 const colors = {
     theme: {
         dark: {
-            primaryDark: 'rgba(0,0,0,0.87)',
+            primaryDark: '#1D1D1D',
             primary: '#393C3B',
             light: '#ffffff'
         },
