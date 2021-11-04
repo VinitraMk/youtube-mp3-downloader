@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -26,26 +26,30 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Layout from './modules/layout/layout';
+import { connect, Provider } from 'react-redux';
+import store from './store/rootReducer';
+import { utilities } from './common/services/utilities';
+import { appInit } from './store/actionCreators/root';
 
-const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-      <Layout></Layout>
-  );
+const App = props => {
+    return (
+        <Layout theme={props.theme}></Layout>
+    );
 };
 
-//const styles = StyleSheet.create({
-    //container: {
-        //flex: 1,
-        //justifyContent: 'center',
-        //alignItems: 'center'
-    //}
-  
-//});
+const mapStateToProps = state => {
+    return {
+        root: state.root,
+        theme: utilities.isNullOrUndefined(state.root) ? '' : state.root.theme
+    }
+};
 
-export default App;
+export const AppComponent = connect(mapStateToProps)(App);
+
+export const appComponentInit = () => {
+    return (
+        <Provider store={store}>
+            <AppComponent/>
+        </Provider>
+    ); 
+}
