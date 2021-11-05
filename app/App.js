@@ -6,30 +6,12 @@
  * @flow strict-local
  */
 
-import React, { useEffect, useState } from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import React from 'react';
 import Layout from './modules/layout/layout';
 import { connect, Provider } from 'react-redux';
 import store from './store/rootReducer';
 import { utilities } from './common/services/utilities';
-import { appInit } from './store/actionCreators/root';
+import { NavigationContainer } from '@react-navigation/native';
 
 const App = props => {
     return (
@@ -49,7 +31,9 @@ export const AppComponent = connect(mapStateToProps)(App);
 export const appComponentInit = () => {
     return (
         <Provider store={store}>
-            <AppComponent/>
+            <NavigationContainer>
+                <AppComponent/>
+            </NavigationContainer>
         </Provider>
     ); 
 }
