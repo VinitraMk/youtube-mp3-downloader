@@ -1,9 +1,10 @@
 import { createStore, combineReducers } from 'redux';
 import { root } from './reducers/root.js';
-
+import { home } from './reducers/home.js';
 const rootReducer = () => {
     return {
-        root
+        root,
+        home
     }
 };
 

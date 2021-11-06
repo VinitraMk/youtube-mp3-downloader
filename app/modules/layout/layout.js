@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, View, Text } from 'react-native';
 import Icon from '../../components/icons/icon.js';
-import { APP_NAME } from '../../common/constants/constants';
+import { APP_NAME, THEMES } from '../../common/constants/constants';
 import colors from '../../styles/common/colors';
 import layoutStyles from './styles';
 import { NavigationContainer } from '@react-navigation/native';
@@ -17,7 +17,7 @@ export default class Layout extends React.Component {
     render() {
         const themeName = this.props.theme;
         return(
-            <SafeAreaView>
+            <SafeAreaView style={{ backgroundColor: colors.theme[themeName].light }}>
                 <StatusBar
                     animated={true}
                     backgroundColor={colors.theme[themeName].primaryDark}
@@ -29,14 +29,17 @@ export default class Layout extends React.Component {
                         screenOptions={{
                             headerStyle: {
                                 color: colors.theme[themeName].light,
-                                backgroundColor: colors.theme[themeName].primary
+                                backgroundColor: themeName === THEMES.LIGHT ? colors.theme[themeName].primary : colors.theme[themeName].primaryDark
                             },
                             headerTitleStyle: {
                                 fontWeight: 'bold',
                                 color: colors.theme[themeName].light
                             },
                             headerTitle: APP_NAME,
-                            headerRight: () => <Icon iconName="MoreVertical"></Icon>
+                            headerRight: () => <Icon iconName="MoreVertical"></Icon>,
+                            contentStyle: {
+                                backgroundColor: themeName === THEMES.LIGHT ? colors.theme[themeName].light : colors.theme[themeName].primary,
+                            }
                         }
                         }
                     >
