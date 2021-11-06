@@ -22,7 +22,7 @@ const layoutStyles = (themeName = DEFAULT_APP_THEME) => {
         body: {
             display: 'flex',
             backgroundColor: themeName === THEMES.LIGHT ? colors.theme[themeName].light : colors.theme[themeName].primary,
-            height: Dimensions.get('window').height - 56
+            height: Dimensions.get('window').height
         }
     })
 };

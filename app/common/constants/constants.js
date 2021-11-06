@@ -3,6 +3,6 @@ export const THEMES = {
     LIGHT: 'light'
 }
 
-export const DEFAULT_APP_THEME = THEMES.LIGHT;
+export const DEFAULT_APP_THEME = THEMES.DARK;
 
 export const APP_NAME = 'Youtube MP3 Maker';

@@ -8,7 +8,7 @@ class Icon extends React.Component {
 
     render() {
         return(
-            allIcons()[this.props.iconName]
+            allIcons(this.props)[this.props.iconName]
         );
     }
 }
