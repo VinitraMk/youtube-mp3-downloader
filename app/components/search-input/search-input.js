@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, TextInput, View } from 'react-native';
+import { SafeAreaView, Text, TextInput, View } from 'react-native';
 import { ButtonTypes } from '../../common/constants/typeConstants';
 import { componentStyles } from './styles';
 import Button from '../button/button';
@@ -13,6 +13,7 @@ const SearchInput = props => {
 
     return (
         <SafeAreaView style={componentStyles(props.theme).searchInputWrapper}>
+            {props.label !== '' && <Text style={componentStyles(props.theme, props.labelColor).searchLabel}>{props.label}</Text>}
             <TextInput
                 style={componentStyles(props.theme).searchInputControl}
                 placeholder={props.placeholder}
@@ -30,7 +31,9 @@ SearchInput.defaultProps = {
     placeholder: '',
     theme: '',
     defaultValue: '',
-    value: ''
+    value: '',
+    label: '',
+    labelColor: 'transparent'
 }
 
 export default SearchInput;
