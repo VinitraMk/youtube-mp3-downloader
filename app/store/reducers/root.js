@@ -1,6 +1,6 @@
 import { DEFAULT_APP_THEME } from "../../common/constants/constants.js";
 import { utilities } from '../../common/services/utilities.js';
-import { APP_INIT } from '../actionCreators/root.js';
+import { APP_INIT } from '../actions/modules/root.js';
 
 const rootInitialState = {
     theme: DEFAULT_APP_THEME

@@ -20,6 +20,9 @@ const pageStyles = (themeName = DEFAULT_APP_THEME) => {
             paddingLeft: 20,
             paddingRight: 30,
             paddingTop: 30
+        },
+        resultsList: {
+
         }
     })
 }

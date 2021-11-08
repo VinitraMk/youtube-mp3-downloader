@@ -3,16 +3,29 @@ import { SafeAreaView, TextInput, View, Text } from 'react-native';
 import { componentStyles } from './styles';
 
 const Input = props => {
+    const styles = Object.assign({}, {
+        ...componentStyles(props.theme),
+        
+    });
+    styles.searchInputWrapper = Object.assign({}, styles.searchInputWrapper, {
+        ...props.addOnStyles.wrapper
+    })
+
+    const handleOnChange = text => {
+        console.log(text);
+        props.onChange(props.name, text);
+    }
+
     return (
-        <SafeAreaView style={componentStyles(props.theme).searchInputWrapper}>
+        <SafeAreaView style={styles.searchInputWrapper}>
             {props.label !== '' && <Text style={componentStyles(props.theme, props.labelColor).searchLabel}>{props.label}</Text>}
             <TextInput
-                style={componentStyles(props.theme).searchInputControl}
+                style={styles.searchInputControl}
                 placeholder={props.placeholder}
                 autoFocus={true}
                 defaultValue={props.defaultValue}
                 value={props.value}
-                onChangeText={props.onChange}
+                onChangeText={text => handleOnChange(text)}
             ></TextInput>
         </SafeAreaView>
         
@@ -24,7 +37,13 @@ Input.defaultProps = {
     theme: '',
     defaultValue: '',
     value: '',
-    labelColor: ''
+    name: '',
+    labelColor: '',
+    addOnStyles: {
+        wrapper: null,
+        label: null,
+        input: null
+    }
 }
 
 export default Input;

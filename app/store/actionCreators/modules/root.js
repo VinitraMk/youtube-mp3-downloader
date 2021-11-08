@@ -1,4 +1,4 @@
-import { APP_INIT } from "../actions/root"
+import { APP_INIT } from "../../actions/modules/root"
 
 export const appInit = () => {
     return {

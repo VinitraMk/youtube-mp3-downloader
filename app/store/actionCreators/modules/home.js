@@ -1,4 +1,4 @@
-import { SEARCH_FOR_URL } from "../actionCreators/home"
+import { SEARCH_FOR_URL } from "../../actions/modules/home"
 
 export const searchForUrl = url => {
     return {
