@@ -16,7 +16,11 @@ const pageStyles = (themeName = DEFAULT_APP_THEME) => {
             elevation: 4 
         },
         searchResultsSection: {
-            backgroundColor: themeName === THEMES.LIGHT ? colors.theme[themeName].light : colors.theme[themeName].primaryDark
+            backgroundColor: themeName === THEMES.LIGHT ? colors.theme[themeName].light : colors.theme[themeName].primaryDark,
+            paddingLeft: 20,
+            paddingRight: 30,
+            paddingTop: 30,
+            maxHeight: 270
         }
     })
 }

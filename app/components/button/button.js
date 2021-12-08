@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, TouchableHighlight, View, StyleSheet } from "react-native";
+import { DEFAULT_APP_THEME } from "../../common/constants/constants";
 import { ButtonTypes } from "../../common/constants/typeConstants";
 import Icon from "../icons/icon";
 import { componentStyles } from "./styles";
@@ -9,6 +10,7 @@ const Button = props => {
         ...props.addOnStyles,
         ...componentStyles(props.theme).iconButton
     });
+
     if (props.type === ButtonTypes.ICON_BUTTON) {
         return (
             <TouchableHighlight onPress={props.onClick} style={iconButtonStyles} activeOpacity={0.8}>
@@ -19,17 +21,18 @@ const Button = props => {
         )
     }
     return (
-        <TouchableHighlight onPress={props.onClick()} styles={componentStyles(props.theme).button} activeOpacity={0.6}>
+        <TouchableHighlight onPress={props.onClick} style={componentStyles(props.theme).button} activeOpacity={0.6}>
             <View>
-                <Text style={{color: 'black'}}>{props.text}</Text>
+                <Text style={componentStyles(props.theme).buttonText}>{props.text}</Text>
             </View>
         </TouchableHighlight>
     )
 }
 
 Button.defaultProps = {
-    theme: '',
+    theme: DEFAULT_APP_THEME,
     text: '',
+    type: ButtonTypes.DEFAULT,
     iconName: '',
     iconColor: '',
     addOnStyles: {}
