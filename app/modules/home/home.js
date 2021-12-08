@@ -18,6 +18,9 @@ import { componentStyles } from '../../components/list/styles.js';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { toggleLoader } from '../../store/actionCreators/modules/root.js';
 import { apiService } from "../../common/services/apiService";
+import { validator } from '../../common/services/validator.js';
+import { URL_TYPES } from "../../common/constants/typeConstants";
+import { errorText } from '../../common/styles/utilities.js';
 
 const DummyData = [
     { artistName: 'artist', albumName: 'album', songName: 'song'},
@@ -38,7 +41,8 @@ class Home extends React.Component {
         super(props);
         this.state = {
             playListItems: null,
-            songList: null
+            songList: null,
+            searchInputError: null
         }
     }
 
@@ -58,12 +62,31 @@ class Home extends React.Component {
     }
 
     onSearch = value => {
-        //this.props.searchForUrl(value);
-        apiService.fetchPlaylistItems(value).then(res => {
-            this.setState({ songList: !utilities.isNullOrUndefined(res.items) ? res.items : [] });
-            console.log(res);
-            this.buildList();
-        });
+        const isUrlValid = validator.validateYoutubeUrl(value);
+        if (isUrlValid) {
+            this.props.searchForUrl(value);
+            const urlType = validator.isPlaylistOrVideo(value);
+            if (urlType === URL_TYPES.PLAYLIST) {
+                this.setState({
+                    searchInputError: null
+                });
+                const playlistId = utilities.getPlaylistId(value);
+                apiService.fetchPlaylistItems(playlistId).then(res => {
+                    this.setState({ songList: !utilities.isNullOrUndefined(res.items) ? res.items : [] });
+                    console.log(res);
+                    this.buildList();
+                });
+            }
+            else {
+                this.setState({
+                    searchInputError: 'Not a playlist url'
+                })
+            }
+        } else {
+            this.setState({
+                searchInputError: 'Invalid url'
+            });
+        }
     }
 
     renderListItem = item => (
@@ -97,6 +120,7 @@ class Home extends React.Component {
             <>
                 <View style={pageStyles(themeName).searchFormSection}>
                     <SearchInput label="Youtube Url" labelColor={searchLabelColor} onClick={this.onSearch} defaultValue={this.props.url} theme={themeName}></SearchInput>
+                    {this.state.searchInputError !== "" && <Text style={errorText()}>{this.state.searchInputError}</Text>}
                 </View>
                 <ScrollView style={pageStyles(themeName).searchResultsSection}>
                     <Input onChange={this.props.changeInputText} name="artistName" addOnStyles={{ wrapper: marginBottom(6)['mb6'] }} value={this.props.artistName} theme={themeName} label="Artist Name" labelColor={resultsLabelColor}></Input>

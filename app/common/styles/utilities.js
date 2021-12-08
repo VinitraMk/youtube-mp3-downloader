@@ -45,3 +45,9 @@ export const marginY = value => {
         marginVertical: spacer * value
     })
 }
+
+export const errorText = () => {
+    return StyleSheet.create({
+        color: 'red'
+    });
+}
