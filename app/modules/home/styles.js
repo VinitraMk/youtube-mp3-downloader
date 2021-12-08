@@ -19,10 +19,8 @@ const pageStyles = (themeName = DEFAULT_APP_THEME) => {
             backgroundColor: themeName === THEMES.LIGHT ? colors.theme[themeName].light : colors.theme[themeName].primaryDark,
             paddingLeft: 20,
             paddingRight: 30,
-            paddingTop: 30
-        },
-        resultsList: {
-
+            paddingTop: 30,
+            maxHeight: 270
         }
     })
 }

@@ -1,14 +1,14 @@
 import React from "react";
-import { FlatList, Text } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { DEFAULT_APP_THEME } from "../../common/constants/constants";
 import { componentStyles } from './styles';
 
 const List = props => {
     return (
         <FlatList
-            style={componentStyles(props.theme).list}
+            style={componentStyles(props.theme, props.backgroundColor).list}
             data={props.data}
-            renderItem={({ item }) => <Text style={componentStyles(props.theme).listItem}>{item[dataLabel]}</Text>}></FlatList>
+            renderItem={({ item }) => <View style={componentStyles(props.theme).listItem}>{props.renderListItem(item)}</View>}></FlatList>
     )
 }
 
@@ -16,6 +16,7 @@ List.defaultProps = {
     theme: DEFAULT_APP_THEME,
     data: [],
     dataLabel: '',
+    backgroundColor: 'transparent'
 }
 
 export default List;
