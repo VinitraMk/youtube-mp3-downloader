@@ -12,7 +12,6 @@ const Input = props => {
     })
 
     const handleOnChange = text => {
-        console.log(text);
         props.onChange(props.name, text);
     }
 

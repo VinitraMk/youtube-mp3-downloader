@@ -73,7 +73,6 @@ class Home extends React.Component {
                 const playlistId = utilities.getPlaylistId(value);
                 apiService.fetchPlaylistItems(playlistId).then(res => {
                     this.setState({ songList: !utilities.isNullOrUndefined(res.items) ? res.items : [] });
-                    console.log(res);
                     this.buildList();
                 });
             }
