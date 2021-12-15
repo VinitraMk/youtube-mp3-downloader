@@ -1,4 +1,4 @@
-import { APP_INIT, TOGGLE_LOADER } from "../../actions/modules/root"
+import { APP_INIT, SET_APP_READY, TOGGLE_LOADER } from "../../actions/modules/root"
 
 export const appInit = () => {
     return {
@@ -13,3 +13,9 @@ export const toggleLoader = (showLoader, message) => {
         message
     }
 };
+
+export const setAppReady = () => {
+    return {
+        type: SET_APP_READY
+    }
+}

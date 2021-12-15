@@ -22,7 +22,7 @@ const SearchInput = props => {
                 value={text}
                 onChangeText={setText}
             ></TextInput>
-            <Button type={ButtonTypes.ICON_BUTTON} iconName="Search" addOnStyles={componentStyles(props.theme).searchButton} onClick={() => onSearchClick()}></Button>
+            <Button type={ButtonTypes.ICON_BUTTON} iconName="Search" addOnStyles={componentStyles(props.theme).searchButton} onClick={onSearchClick}></Button>
         </SafeAreaView>
     )
 }

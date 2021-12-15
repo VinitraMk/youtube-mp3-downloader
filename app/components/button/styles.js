@@ -17,6 +17,10 @@ export const componentStyles = (themeName = DEFAULT_APP_THEME) => {
             width: 'auto',
             borderRadius: 4
         },
+        buttonTransparent: {
+            backgroundColor: 'transparent',
+            height: 25
+        },
         iconButton: {
             backgroundColor: themeName === THEMES.LIGHT ? colors.theme[themeName].primary : colors.theme[themeName]?.accent,
             color: 'white',
@@ -29,6 +33,11 @@ export const componentStyles = (themeName = DEFAULT_APP_THEME) => {
         buttonText: {
             fontWeight: 'bold',
             color: colors.theme[themeName].light,
+            textTransform: 'uppercase'
+        },
+        buttonTransparentText: {
+            fontWeight: 'bold',
+            color: themeName === THEMES.LIGHT ? colors.theme[themeName].primary : colors.theme[themeName].light,
             textTransform: 'uppercase'
         }
     })

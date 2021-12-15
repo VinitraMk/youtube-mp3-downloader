@@ -1,4 +1,4 @@
-import { API_KEY, YOUTUBE_PLAYLIST_API } from "../constants/constants";
+import { API_KEY, YOUTUBE_PLAYLIST_API, YOUTUBE_URL_PREFIX, YOUTUBE_VIDEO_API } from "../constants/constants";
 
 const apiService = (function() {
 
@@ -37,10 +37,19 @@ const apiService = (function() {
         const url = buildUrl(YOUTUBE_PLAYLIST_API, { part: ['snippet', 'id'], playlistId, maxResults: 50, key: API_KEY });
         return callApi(url)
         .then(res => res)
-        .catch(err => console.log('Error', err));
+        .catch(err => console.log('Error calling playlist api', err));
     }
+
+    const fetchVideoDetails = async(videoId) => {
+        const url = buildUrl(YOUTUBE_VIDEO_API, { part: 'snippet', id: videoId, key: API_KEY });
+        return callApi(url)
+        .then(res => res)
+        .catch(err => console.log('Error calling video api', err));
+    }
+
     return {
-        fetchPlaylistItems: playlistId => fetchPlaylistItems(playlistId).then(res => res)
+        fetchPlaylistItems: playlistId => fetchPlaylistItems(playlistId).then(res => res),
+        fetchVideoDetails: videoId => fetchVideoDetails(videoId).then(res => res)
     }
 }());
 

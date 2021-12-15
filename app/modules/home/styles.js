@@ -8,7 +8,7 @@ const pageStyles = (themeName = DEFAULT_APP_THEME) => {
             display: 'flex',
             justifyContent: 'center',
             paddingHorizontal: 50,
-            height: 211,
+            height: 125,
             backgroundColor: themeName === THEMES.LIGHT ? colors.theme[themeName].lightSecondary : colors.theme[themeName].primary,
             shadowColor: 'rgba(0,0,0,0.25)',
             shadowOffset: { width: 0, height: 4},
@@ -20,7 +20,8 @@ const pageStyles = (themeName = DEFAULT_APP_THEME) => {
             paddingLeft: 20,
             paddingRight: 30,
             paddingTop: 30,
-            maxHeight: 270
+            maxHeight: 290,
+            width: '100%'
         }
     })
 }

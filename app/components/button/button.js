@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableHighlight, View, StyleSheet } from "react-native";
+import { Text, TouchableHighlight, TouchableOpacity, View, StyleSheet } from "react-native";
 import { DEFAULT_APP_THEME } from "../../common/constants/constants";
 import { ButtonTypes } from "../../common/constants/typeConstants";
 import Icon from "../icons/icon";
@@ -13,15 +13,24 @@ const Button = props => {
 
     if (props.type === ButtonTypes.ICON_BUTTON) {
         return (
-            <TouchableHighlight onPress={props.onClick} style={iconButtonStyles} activeOpacity={0.8}>
+            <TouchableHighlight onPress={props.onClick} style={iconButtonStyles} activeOpacity={0.8} disabled={props.disabled}>
                 <View>
                     <Icon iconName={props.iconName}></Icon>
                 </View>
             </TouchableHighlight>
         )
     }
+    else if (props.type === ButtonTypes.TRANSPARENT) {
+        return (
+            <TouchableOpacity activeOpacity={0.8} onPress={props.onClick} style={componentStyles(props.theme).buttonTransparent} disabled={props.disabled}>
+                <View>
+                    <Text style={componentStyles(props.theme).buttonTransparentText}>{props.text}</Text>
+                </View>
+            </TouchableOpacity>
+        )
+    }
     return (
-        <TouchableHighlight onPress={props.onClick} style={componentStyles(props.theme).button} activeOpacity={0.6}>
+        <TouchableHighlight onPress={props.onClick} style={componentStyles(props.theme).button} activeOpacity={0.6} disabled={props.disabled}>
             <View>
                 <Text style={componentStyles(props.theme).buttonText}>{props.text}</Text>
             </View>
@@ -35,7 +44,8 @@ Button.defaultProps = {
     type: ButtonTypes.DEFAULT,
     iconName: '',
     iconColor: '',
-    addOnStyles: {}
+    addOnStyles: {},
+    disabled: false
 }
 
 export default Button;
