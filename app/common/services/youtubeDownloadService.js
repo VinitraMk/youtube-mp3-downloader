@@ -1,6 +1,5 @@
 import { DOWNLOADS_LOCATION, YOUTUBE_URL_PREFIX } from '../constants/constants';
 import ytdl from 'react-native-ytdl';
-import { RNFFmpegConfig } from 'react-native-ffmpeg';
 
 const youtubeDownloadService = (function() {
 
