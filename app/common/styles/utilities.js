@@ -22,7 +22,9 @@ export const marginRight = value => {
 
 export const marginTop = value => {
     return StyleSheet.create({
-        marginTop: spacer * value
+        [`mt${value}`]: {
+            marginTop: spacer * value
+        }
     })
 }
 
@@ -49,5 +51,13 @@ export const marginY = value => {
 export const errorText = () => {
     return StyleSheet.create({
         color: 'red'
+    });
+}
+
+export const textR = () => {
+    return StyleSheet.create({
+        textR: {
+            textAlign: 'right'
+        }
     });
 }

@@ -12,6 +12,10 @@ target 'youtubemp3downloader' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-ffmpeg', :path => '../node_modules/react-native-ffmpeg'
+
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
   target 'youtubemp3downloaderTests' do
     inherit! :complete
     # Pods for testing
