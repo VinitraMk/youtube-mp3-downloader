@@ -22,6 +22,7 @@ import { validator } from '../../common/services/validator.js';
 import { ButtonTypes, URL_TYPES } from "../../common/constants/typeConstants";
 import { errorText } from '../../common/styles/utilities.js';
 import { youtubeDownloadService } from "../../common/services/youtubeDownloadService";
+import { showToastMessage } from '../../components/toast/toast.js';
 
 class Home extends React.Component {
     constructor(props) {
@@ -142,7 +143,7 @@ class Home extends React.Component {
                     <Input onChange={this.props.changeInputText} name="albumName" addOnStyles={{ wrapper: marginBottom(6)['mb6'] }} value={this.props.albumName} theme={themeName} label="Album Name" labelColor={resultsLabelColor}></Input>
                     <View style={row().rowReverse}>
                         <View style={column(6).column}>
-                            <Button theme={this.props.theme} text="Set Details" onClick={() => this.props.setDetails()}></Button>
+                            <Button theme={this.props.theme} text="Set Details" onClick={() => showToastMessage('message')}></Button>
                         </View>
                     </View>
                     <View style={`${marginTop(1)['mt1']} ${textR().textR}`}>

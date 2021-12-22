@@ -1,13 +1,19 @@
 import { DOWNLOADS_LOCATION, YOUTUBE_URL_PREFIX } from '../constants/constants';
 import ytdl from 'react-native-ytdl';
+import { showToastMessage } from '../../components/toast/toast.js';
 
 const youtubeDownloadService = (function() {
 
-    //const ytdl = require('react-native-ytdl');
-    //const ffmpeg = require('react-native-ffmpeg');
     const fs = require('react-native-fs');
 
+    let songCount = 0;
+
+    let c = 0;
+
     const fetchSongs = items => {
+        songCount = items.length;
+        c = 0;
+        showToastMessage('Starting download');
         items.forEach(async(item, i) => {
             const url = `${YOUTUBE_URL_PREFIX}${item.id}`;
             //console.log('url', url)
@@ -20,8 +26,18 @@ const youtubeDownloadService = (function() {
                 fromUrl: audioFormats.url,
                 toFile: path
             }).promise
-            .then(res => console.log('file downloaded', res))
-            .catch(err => console.log('failed to download file', err));
+            .then(res => {
+                c = c + 1;
+                if (c === songCount) {
+                    //console.log('inside all files count if');
+                    showToastMessage('All successfully files downloaded');
+                }
+                //console.log('file downloaded', res);
+            })
+            .catch(err => {
+                showToastMessage(`Error downloading song ${item.songName}`);
+                //console.log('failed to download file', err);
+            });
         })
     }
 
