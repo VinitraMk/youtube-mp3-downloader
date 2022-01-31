@@ -18,9 +18,8 @@ const youtubeDownloadService = (function() {
             const url = `${YOUTUBE_URL_PREFIX}${item.id}`;
             //console.log('url', url)
             const info = await ytdl.getInfo(url, { quality: 'highestaudio' });
-            const audioFormats = await ytdl.chooseFormat(info.formats, { codecs: 'mp4a.40.2' });
-            //console.log('format', audioFormats);
-            //console.log(fs.ExternalDirectoryPath, fs.ExternalStorageDirectoryPath, fs.DocumentDirectoryPath, fs.MainBundlePath);
+            const audioFormats = await ytdl.chooseFormat(info.formats, { container: 'mp4' });
+            //console.log(fs.ExternalDirectoryPath, 'extrnal storage: ', fs.ExternalStorageDirectoryPath);
             const path = `${fs.ExternalStorageDirectoryPath}/Music/${item.songName}.mp3`;
             fs.downloadFile({
                 fromUrl: audioFormats.url,
@@ -32,11 +31,11 @@ const youtubeDownloadService = (function() {
                     //console.log('inside all files count if');
                     showToastMessage('All successfully files downloaded');
                 }
-                //console.log('file downloaded', res);
+                console.log('file downloaded', res);
             })
             .catch(err => {
-                showToastMessage(`Error downloading song ${item.songName}`);
-                //console.log('failed to download file', err);
+                showToastMessage(`Error downloading song ${item.songName}: ${err}`);
+                console.log('failed to download file', err);
             });
         })
     }

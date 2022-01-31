@@ -139,13 +139,13 @@ class Home extends React.Component {
                     {this.state.searchInputError !== "" && <Text style={errorText()}>{this.state.searchInputError}</Text>}
                 </View>
                 {this.props.isAppReady && <ScrollView style={pageStyles(themeName).searchResultsSection}>
-                    <Input onChange={this.props.changeInputText} name="artistName" addOnStyles={{ wrapper: marginBottom(6)['mb6'] }} value={this.props.artistName} theme={themeName} label="Artist Name" labelColor={resultsLabelColor}></Input>
+                    {/*<Input onChange={this.props.changeInputText} name="artistName" addOnStyles={{ wrapper: marginBottom(6)['mb6'] }} value={this.props.artistName} theme={themeName} label="Artist Name" labelColor={resultsLabelColor}></Input>
                     <Input onChange={this.props.changeInputText} name="albumName" addOnStyles={{ wrapper: marginBottom(6)['mb6'] }} value={this.props.albumName} theme={themeName} label="Album Name" labelColor={resultsLabelColor}></Input>
                     <View style={row().rowReverse}>
                         <View style={column(6).column}>
                             <Button theme={this.props.theme} text="Set Details" onClick={() => showToastMessage('message')}></Button>
                         </View>
-                    </View>
+                    </View>*/}
                     <View style={`${marginTop(1)['mt1']} ${textR().textR}`}>
                         <Button disabled={utilities.isArrayEmpty(this.state.playListItems)} theme={this.props.theme} text="Download All" onClick={() => this.downloadSongs()} type={ButtonTypes.TRANSPARENT}></Button>
                     </View>
